@@ -5,7 +5,8 @@ namespace IdeoTreeStructure.MVC.App_Start
 {
     using System;
     using System.Web;
-
+    using System.Web.Mvc;
+    using IdeoTreeStructure.MVC.Infrastructure;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -61,6 +62,8 @@ namespace IdeoTreeStructure.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            DependencyResolver.SetResolver(
+                new NinjectDependencyResolver(kernel));
         }        
     }
 }

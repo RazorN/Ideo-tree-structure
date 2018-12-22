@@ -113,6 +113,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IdeoTreeStructure.Domain\IdeoTreeStructure.Domain.csproj">
+      <Project>{e01c766b-d513-4219-9cec-b22cdb295da3}</Project>
+      <Name>IdeoTreeStructure.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IdeoTreeStructure.MVC\IdeoTreeStructure.MVC.csproj">
       <Project>{1BB1BC88-4474-4E15-85C0-30C3673B609A}</Project>
       <Name>IdeoTreeStructure.MVC</Name>
