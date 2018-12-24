@@ -34,12 +34,12 @@ namespace IdeoTreeStructure.MVC.Infrastructure
             {
                 new TreeNode {NodeID = 0, Content = "Node1", ParentID = null},
                 new TreeNode {NodeID = 1, Content = "Node2", ParentID = null},
-                new TreeNode {NodeID = 2, Content = "Node2", ParentID = null},
-                new TreeNode {NodeID = 3, Content = "Node1", ParentID = 0},
-                new TreeNode {NodeID = 4, Content = "Node1", ParentID = 0},
-                new TreeNode {NodeID = 5, Content = "Node1", ParentID = 0},
-                new TreeNode {NodeID = 6, Content = "Node1", ParentID = 3},
-                new TreeNode {NodeID = 7, Content = "Node1", ParentID = 3},
+                new TreeNode {NodeID = 2, Content = "Node3", ParentID = null},
+                new TreeNode {NodeID = 3, Content = "Node4", ParentID = 0},
+                new TreeNode {NodeID = 4, Content = "Node5", ParentID = 0},
+                new TreeNode {NodeID = 5, Content = "Node6", ParentID = 0},
+                new TreeNode {NodeID = 6, Content = "Node7", ParentID = 3},
+                new TreeNode {NodeID = 7, Content = "Node8", ParentID = 3},
             });
             kernel.Bind<ITreeNodeRepository>().ToConstant(mock.Object);
         }

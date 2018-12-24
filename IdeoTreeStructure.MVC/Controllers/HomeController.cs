@@ -1,4 +1,6 @@
 ﻿using IdeoTreeStructure.Domain.Abstract;
+using IdeoTreeStructure.MVC.Models;
+using IdeoTreeStructure.MVC.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,9 @@ namespace IdeoTreeStructure.MVC.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            //This is how new Tree model works
+            var treeRoot = new TreeElement().CreateTreeFromFlatNodes(repository.TreeNodes.ToList());
+
             return View(repository.TreeNodes);
         }
     }
