@@ -24,7 +24,7 @@ namespace IdeoTreeStructure.MVC.Controllers
             //This is how new Tree model works
             var treeRoot = new TreeElement().CreateTreeFromFlatNodes(repository.TreeNodes.ToList());
 
-            return View(repository.TreeNodes);
+            return View(treeRoot);
         }
     }
 }
