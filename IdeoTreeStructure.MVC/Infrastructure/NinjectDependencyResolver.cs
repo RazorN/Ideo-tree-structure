@@ -43,6 +43,7 @@ namespace IdeoTreeStructure.MVC.Infrastructure
                 new TreeNode {NodeID = 8, Content = "Node9", ParentID = 7},
                 new TreeNode {NodeID = 9, Content = "Node10", ParentID = null}
             });
+            mock.Setup(m => m.RemoveNode(It.IsAny<int>())).Returns(true);
             kernel.Bind<ITreeNodeRepository>().ToConstant(mock.Object);
         }
     }

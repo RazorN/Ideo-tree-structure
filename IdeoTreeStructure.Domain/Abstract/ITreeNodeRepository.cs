@@ -8,5 +8,6 @@ namespace IdeoTreeStructure.Domain.Abstract
     public interface ITreeNodeRepository
     {
         IEnumerable<TreeNode> TreeNodes { get; }
+        bool RemoveNode(int id);
     }
 }
