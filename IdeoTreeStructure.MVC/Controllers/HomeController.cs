@@ -1,4 +1,5 @@
 ﻿using IdeoTreeStructure.Domain.Abstract;
+using IdeoTreeStructure.Domain.Entities;
 using IdeoTreeStructure.MVC.Models;
 using IdeoTreeStructure.MVC.Utils;
 using System;
@@ -28,13 +29,44 @@ namespace IdeoTreeStructure.MVC.Controllers
             return View(treeRoot);
         }
 
+        public ActionResult EditView()
+        {
+            return View();
+        }
+
         public ActionResult RemoveNode(int id)
         {
             var removeResult = repository.RemoveNode(id);
-            if (removeResult == true)
+            if (!removeResult.Equals(null))
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             else
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+        }
+
+        public ActionResult AddNode(TreeNode newNode)
+        {
+            var addedNode = repository.AddNode(newNode);
+            if (!addedNode.Equals(null))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        public ActionResult EditNode(TreeNode modfiedNode)
+        {
+            var editedNode = repository.EditNode(modfiedNode);
+            if (!editedNode.Equals(null))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }
