@@ -1,7 +1,13 @@
-﻿
+﻿@model IdeoTreeStructure.MVC.Models.TreeUpdateElement
+
 @{
     ViewBag.Title = "EditView";
 }
 
-Content: <input type="text" name="FirstName">
-
+@using (Html.BeginForm("EditNode", "Home", FormMethod.Post))
+{
+    @Html.Hidden("IdToUpdate", Model.IdToUpdate);
+    <p>Content: @Html.TextBoxFor(x => x.NewContent)</p>
+    <p>Parent: @Html.TextBoxFor(x => x.NewParentID)</p>
+    <input type="submit" value="Add node" />
+}

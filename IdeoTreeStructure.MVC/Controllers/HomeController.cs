@@ -29,9 +29,21 @@ namespace IdeoTreeStructure.MVC.Controllers
             return View(treeRoot);
         }
 
-        public ActionResult EditView()
+        [HttpGet]
+        public ActionResult AddView()
         {
             return View();
+        }
+
+        public ActionResult EditView(int idToEdit)
+        {
+            var editNode = repository.TreeNodes.SingleOrDefault(m => m.NodeID == idToEdit);
+            var update = new TreeUpdateElement();
+
+            update.IdToUpdate = idToEdit;
+            update.NewContent = editNode.Content;
+            update.NewParentID = editNode.ParentID;
+            return View(update);
         }
 
         public ActionResult RemoveNode(int id)
@@ -46,22 +58,27 @@ namespace IdeoTreeStructure.MVC.Controllers
         public ActionResult AddNode(TreeNode newNode)
         {
             var addedNode = repository.AddNode(newNode);
-            if (!addedNode.Equals(null))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+            /*  if (!addedNode.Equals(null))
+              {
+                  return new HttpStatusCodeResult(HttpStatusCode.OK);
+              }
+              else
+              {
+                  return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+              }
+              */
+            return Redirect("Index");
         }
 
-        public ActionResult EditNode(TreeNode modfiedNode)
+        public ActionResult EditNode(TreeUpdateElement modfiedNode)
         {
-            var editedNode = repository.EditNode(modfiedNode);
+            var editedNode = repository.TreeNodes.FirstOrDefault(m => m.NodeID == modfiedNode.IdToUpdate);
             if (!editedNode.Equals(null))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
+                editedNode.Content = modfiedNode.NewContent;
+                editedNode.ParentID = modfiedNode.NewParentID;
+                repository.EditNode(editedNode);
+                return Redirect("Index");
             }
             else
             {

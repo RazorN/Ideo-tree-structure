@@ -12,6 +12,8 @@
                 <div class="bg-light border border-primary rounded m-2">
                     <h5>@element.Id</h5>
                     <button type="button" class="btn btn-danger" id=@element.Id onclick="removeButtonClicked(this.id)">rm</button>
+                    @Html.ActionLink("edit", "EditView", "Home",
+                    new { @idToEdit = @element.Id }, new { @class = "btn btn-primary" })
                     <p>@element.Content</p>
 
                     @if (element.Children.Any())
