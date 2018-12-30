@@ -1,4 +1,4 @@
-﻿@model IdeoTreeStructure.MVC.Models.TreeUpdate
+﻿@model IdeoTreeStructure.Domain.Entities.TreeNode
 @{
     ViewBag.Title = "AddView";
 }
@@ -6,8 +6,9 @@
 
 @using (Html.BeginForm("AddNode", "Home", FormMethod.Post))
 {
-<p>Content: @Html.TextBoxFor(x => x.Content)</p>
-<input type="submit" value="Add node" />
+    <p>Content: @Html.TextBoxFor(x => x.Content)</p>
+    <p>Parent: @Html.TextBoxFor(x => x.ParentID)</p>
+    <input type="submit" value="Add node" />
 }
 
 
