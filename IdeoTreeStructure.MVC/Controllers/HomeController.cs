@@ -20,10 +20,8 @@ namespace IdeoTreeStructure.MVC.Controllers
             this.repository = repository;
         }
 
-        // GET: Home
         public ActionResult Index(string sortParam = "id")
         {
-            //This is how new Tree model works
             var treeRoot = new TreeElement().CreateTreeFromFlatNodes(repository.TreeNodes.ToList());
 
             switch (sortParam)
@@ -42,7 +40,6 @@ namespace IdeoTreeStructure.MVC.Controllers
             return View(treeRoot);
         }
 
-        [HttpGet]
         public ActionResult AddView()
         {
             return View();
@@ -71,15 +68,6 @@ namespace IdeoTreeStructure.MVC.Controllers
         public ActionResult AddNode(TreeNode newNode)
         {
             var addedNode = repository.AddNode(newNode);
-            /*  if (!addedNode.Equals(null))
-              {
-                  return new HttpStatusCodeResult(HttpStatusCode.OK);
-              }
-              else
-              {
-                  return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-              }
-              */
             return Redirect("Index");
         }
 
