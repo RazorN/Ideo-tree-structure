@@ -21,10 +21,23 @@ namespace IdeoTreeStructure.MVC.Controllers
         }
 
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(string sortParam = "id")
         {
             //This is how new Tree model works
             var treeRoot = new TreeElement().CreateTreeFromFlatNodes(repository.TreeNodes.ToList());
+
+            switch (sortParam)
+            {
+                case "alp":
+                    treeRoot.SortTreeNodes(e => e.Content);
+                    break;
+                case "id":
+                    treeRoot.SortTreeNodes(e => e.Id.ToString());
+                    break;
+                case "childam":
+                    treeRoot.SortTreeNodes(e => e.Children.Count.ToString());
+                    break;
+            }
 
             return View(treeRoot);
         }

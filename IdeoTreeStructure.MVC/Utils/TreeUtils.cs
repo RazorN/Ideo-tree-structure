@@ -9,6 +9,15 @@ namespace IdeoTreeStructure.MVC.Utils
 {
     public static class TreeUtils
     {
+        public static void SortTreeNodes(this TreeElement root, Func<TreeElement,string> keySelector)
+        {
+            root.Children = root.Children.OrderBy(keySelector).ToList();
+            foreach(var node in root.Children)
+            {
+                node.SortTreeNodes(keySelector);
+            }
+        }
+
         public static TreeElement CreateTreeFromFlatNodes(this TreeElement root, List<TreeNode> flatNodes)
         {
             var treeElements = new List<TreeElement>();
