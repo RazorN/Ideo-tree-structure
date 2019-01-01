@@ -10,11 +10,11 @@
     {
 
     <div class="bg-light border border-primary rounded m-2" id=@element.Id>
-        <h5>@element.Id</h5>
-        <button type="button" class="btn btn-danger" onclick="removeButtonClicked(@element.Id)">rm</button>
+        <h5>ID: @element.Id</h5>
+        <button type="button" class="btn btn-danger" onclick="removeButtonClicked(@element.Id)"><span class="glyphicon glyphicon-remove"></span></button>
         @Html.ActionLink("edit", "EditView", "Home",
         new { @idToEdit = @element.Id }, new { @class = "btn btn-primary" })
-        <button type="button" class="btn btn-dark" onclick="hideButtonClicked(@element.Id)">hide</button>
+        <button type="button" class="btn btn-dark" onclick="hideButtonClicked(@element.Id)"><span class="glyphicon glyphicon-th-list"></span></button>
         <p>@element.Content</p>
 
         @if (element.Children.Any())
