@@ -5,36 +5,45 @@
 }
 @helper ShowTree(TreeElement root)
 {
-<div id="root">
-    @foreach (var element in root.Children)
-    {
-
-    <div class="bg-light border border-primary rounded m-2" id=@element.Id>
-        <h5>ID: @element.Id</h5>
-        <button type="button" class="btn btn-danger" onclick="removeButtonClicked(@element.Id)"><span class="glyphicon glyphicon-remove"></span></button>
-        @Html.ActionLink("edit", "EditView", "Home",
-        new { @idToEdit = @element.Id }, new { @class = "btn btn-primary" })
-        <button type="button" class="btn btn-dark" onclick="hideButtonClicked(@element.Id)"><span class="glyphicon glyphicon-th-list"></span></button>
-        <p>@element.Content</p>
-
-        @if (element.Children.Any())
+    <div id="root">
+        @foreach (var element in root.Children)
         {
-            @ShowTree(element)
+
+            <div class="bg-light border border-primary rounded m-2" id=@element.Id>
+                <h4 class="text-primary">Node id: @element.Id</h4>
+                <button type="button" class="btn btn-danger btn-xs float-right" onclick="removeButtonClicked(@element.Id)"><span class="glyphicon glyphicon-remove"></span></button>
+                @Html.ActionLink("edit", "EditView", "Home",
+                new { @idToEdit = @element.Id }, new { @class = "btn btn-primary btn-xs float-right" })
+                @if (element.Children.Any())
+                {
+                    <button type="button" class="btn btn-info btn-xs float-right" id="hideBtn" onclick="hideButtonClicked(@element.Id)">hide</button>
+                }
+                <p>Content: @element.Content</p>
+
+                @if (element.Children.Any())
+                {
+                    @ShowTree(element)
+                }
+            </div>
+
         }
     </div>
-
-    }
-</div>
 }
 
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort<span class="caret"></span></button>
-    <ul class="dropdown-menu">
-        <li>@Html.ActionLink("alpha","Index","Home", new { sortParam = "alp" }, new { @class = "btn" })</li>
-        <li>@Html.ActionLink("id", "Index", "Home", new { sortParam = "id" }, new { @class = "btn" })</li>
-        <li>@Html.ActionLink("child ammount", "Index", "Home", new { sortParam = "childam" }, new { @class = "btn" })</li>
-    </ul>
-</div>
+    <div class="mb-5">
+
+        @Html.ActionLink("Add node", "AddView", "Home", null, new { @class = "btn btn-success btn-lg d-inline" })
+
+        <div class="dropdown d-inline float-right">
+            <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Sort by</button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("alphabetically", "Index", "Home", new { sortParam = "alp" }, new { @class = "btn float-left" })</li>
+                <li>@Html.ActionLink("id", "Index", "Home", new { sortParam = "id" }, new { @class = "btn float-left" })</li>
+                <li>@Html.ActionLink("child ammount", "Index", "Home", new { sortParam = "childam" }, new { @class = "btn float-left" })</li>
+            </ul>
+        </div>
+
+    </div>
 
 
 @ShowTree(Model)
@@ -53,16 +62,11 @@
         parentDiv = $("div#" + clickedId);
         if (parentDiv.children("div").is(':visible')) {
             parentDiv.children("div").hide();
+            parentDiv.children("#hideBtn").text("show");
         }
         else {
             parentDiv.children("div").show();
+            parentDiv.children("#hideBtn").text("hide");
         }
-    }
-    function sortAlphabetically() {
-        $("div#root").children("div").sort(function (a, b) {
-            elementA = $(a).children('p').text();
-            elementB = $(b).children('p').text();
-            return a > b;
-        })
     }
 </script>
