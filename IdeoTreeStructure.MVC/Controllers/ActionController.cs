@@ -48,7 +48,7 @@ namespace IdeoTreeStructure.MVC.Controllers
         {
             if (newNode.ParentID != null)
             {
-                var parentNode = repository.TreeNodes.FirstOrDefault(n => n.ParentID == newNode.ParentID);
+                var parentNode = repository.TreeNodes.FirstOrDefault(n => n.NodeID == newNode.ParentID);
                 if (parentNode == null)
                 {
                     return View("Error", new ErrorModel { Message = "Paren not found" });
