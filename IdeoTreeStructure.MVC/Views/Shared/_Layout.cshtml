@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-primary bg-light">
         @Html.ActionLink("Ideo tree structure", "Index", "Home", null, new { @class = "navbar-brand" })
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
     </nav>
 
     <div class="container body-content">
@@ -26,9 +25,6 @@
             <p>&copy; @DateTime.Now.Year - Adam Stolarczyk</p>
         </footer>
     </div>
-
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
 
 </body>
 </html>
