@@ -48,43 +48,19 @@ namespace IdeoTreeStructure.MVC.Controllers
         public ActionResult EditView(int idToEdit)
         {
             var editNode = repository.TreeNodes.SingleOrDefault(m => m.NodeID == idToEdit);
-            var update = new TreeUpdateElement();
+            if(editNode == null)
+            {
+                return View("Error", new ErrorModel { Message = "Node with id " + idToEdit + " not found" });
+            }
 
-            update.IdToUpdate = idToEdit;
-            update.NewContent = editNode.Content;
-            update.NewParentID = editNode.ParentID;
+            var update = new TreeUpdateElement()
+            {
+                IdToUpdate = idToEdit,
+                NewContent = editNode.Content,
+                NewParentID = editNode.ParentID
+            };
+
             return View(update);
-        }
-
-        public ActionResult RemoveNode(int id)
-        {
-            var removeResult = repository.RemoveNode(id);
-            if (!removeResult.Equals(null))
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            else
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-        }
-
-        public ActionResult AddNode(TreeNode newNode)
-        {
-            var addedNode = repository.AddNode(newNode);
-            return Redirect("Index");
-        }
-
-        public ActionResult EditNode(TreeUpdateElement modfiedNode)
-        {
-            var editedNode = repository.TreeNodes.FirstOrDefault(m => m.NodeID == modfiedNode.IdToUpdate);
-            if (!editedNode.Equals(null))
-            {
-                editedNode.Content = modfiedNode.NewContent;
-                editedNode.ParentID = modfiedNode.NewParentID;
-                repository.EditNode(editedNode);
-                return Redirect("Index");
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
-        }
+        }  
     }
 }

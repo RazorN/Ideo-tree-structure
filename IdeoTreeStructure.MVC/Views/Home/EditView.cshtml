@@ -4,7 +4,7 @@
     ViewBag.Title = "EditView";
 }
 
-@using (Html.BeginForm("EditNode", "Home", FormMethod.Post))
+@using (Html.BeginForm("EditNode", "Action", FormMethod.Post))
 {
     @Html.Hidden("IdToUpdate", Model.IdToUpdate);
     <p>Content: @Html.TextBoxFor(x => x.NewContent)</p>

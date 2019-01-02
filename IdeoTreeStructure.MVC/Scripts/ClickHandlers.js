@@ -1,6 +1,6 @@
 ﻿function removeButtonClicked(clickedId) {
     $.ajax({
-        url: "RemoveNode",
+        url: "Action/RemoveNode",
         type: 'GET',
         data: { id: clickedId },
         success: function () {

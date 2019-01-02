@@ -4,7 +4,7 @@
 }
 
 
-@using (Html.BeginForm("AddNode", "Home", FormMethod.Post))
+@using (Html.BeginForm("AddNode", "Action", FormMethod.Post))
 {
     <p>Content: @Html.TextBoxFor(x => x.Content)</p>
     <p>Parent: @Html.TextBoxFor(x => x.ParentID)</p>
